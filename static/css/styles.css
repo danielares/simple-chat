@@ -1,0 +1,23 @@
+* {
+    text-decoration: none;
+    color: #eee;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(44, 44, 44, 1));
+}
+
+.container {
+    margin-top: 50px;
+}
+
+#botao {
+    width: 150px;
+}
+
+/* SALA */
+#sala {
+    width: 50%;
+}

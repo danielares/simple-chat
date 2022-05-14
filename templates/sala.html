@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12">
+            <p class="h1">Sala</p>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+                <textarea class="form-control" id="sala" cols="70" rows="15" disabled="yes"></textarea>
+        </div>
+        <div class="col-12 m-2">
+            <input class="form-control" id="texto" type="text" size="50" />
+        </div>
+        <div class="col-12">
+            <input class="btn btn-lg btn-primary" id="botao" type="button" value="Enviar" />
+        </div>
+    </div>
+</div>
+
+<script>
+    var nome_sala = {{ nome_sala_json }};
+
+    var chatSocket = new WebSocket(
+        'wss://' + window.location.host +
+        '/wss/chat/' + nome_sala + '/');
+
+    chatSocket.onmessage = function (e) {
+        var dados = JSON.parse(e.data);
+        var mensagem = dados['mensagem'];
+        document.querySelector('#sala').value += (mensagem + '\n');
+    };
+
+    chatSocket.onclose = function (e) {
+        console.error('O chat encerrou de forma inesperada.');
+    };
+
+    document.querySelector('#texto').focus();
+    document.querySelector('#texto').onkeyup = function (e) {
+        if (e.keyCode === 13) {
+            document.querySelector('#botao').click();
+        }
+    };
+
+    document.querySelector('#botao').onclick = function (e) {
+        var mensagemInput = document.querySelector('#texto');
+        var mensagem = mensagemInput.value;
+        chatSocket.send(JSON.stringify({
+            'mensagem': '{{request.user}}: ' + mensagem
+        }));
+        mensagemInput.value = '';
+    };
+
+</script>
+
+{% endblock %}
