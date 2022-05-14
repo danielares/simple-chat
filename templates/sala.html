@@ -27,8 +27,8 @@ Index
     var nome_sala = {{ nome_sala_json }};
 
     var chatSocket = new WebSocket(
-        'wss://' + window.location.host +
-        '/wss/chat/' + nome_sala + '/');
+        'ws://' + window.location.host +
+        '/ws/chat/' + nome_sala + '/');
 
     chatSocket.onmessage = function (e) {
         var dados = JSON.parse(e.data);
