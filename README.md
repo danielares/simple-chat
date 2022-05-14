@@ -1,6 +1,6 @@
 <h1 align='center'>SimpleChat</h1>
 <p align='center'>Um simple webchat utilizando Django-Channels e Redis.</p>
-<p><a href='https://twcomp.xyz/'>Clique aqui para ver a aplicação funcionando</a></p>
+<p><a href='http://simplechat-wick.herokuapp.com'>Clique aqui para ver a aplicação funcionando</a></p>
 
 <p align='center'>
 <a href='#feature'>Features</a> |
